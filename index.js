@@ -18,11 +18,11 @@ app.listen(3400, () => {
   console.log('Listening on port 3400');
 });
 
-const getData = async kennitala => {
-  const browser = await puppeteer.launch({
-    headless: true
-  });
+const browser = await puppeteer.launch({
+  headless: true
+});
 
+const getData = async kennitala => {
   let page = await browser.newPage();
 
   await page.goto('https://kjorskra.skra.is/kjorskra/', {
@@ -48,8 +48,6 @@ const getData = async kennitala => {
       return items;
     })
   );
-
-  await browser.close();
 
   return {
     kennitala: data[0],
