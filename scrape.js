@@ -1,15 +1,21 @@
 const puppeteer = require('puppeteer');
 
 (async () => {
+  console.log('starting');
   const kennitala = process.argv[2];
+
+  console.log('opening browser');
 
   const browser = await puppeteer.launch({
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
 
+  console.log('opening page');
+
   let page = await browser.newPage();
 
+  console.log('goto page');
   await page.goto('https://kjorskra.skra.is/kjorskra/', {
     waitUntil: 'networkidle'
   });
