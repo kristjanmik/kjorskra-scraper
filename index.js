@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const express = require('express');
 const app = express();
 
-app.get('/kjorskra/:kennitala', async (req, res, next) => {
+app.get('/leita/:kennitala', async (req, res, next) => {
   try {
     const { kennitala } = req.params;
 
