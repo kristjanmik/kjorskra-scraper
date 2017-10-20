@@ -68,7 +68,9 @@ const puppeteer = require('puppeteer');
     };
   };
 
-  app.listen(3400, () => {
-    console.log('Listening on port 3400');
+  const PORT = process.env.PORT || 3400;
+
+  app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
   });
 })();
