@@ -39,7 +39,16 @@ const puppeteer = require('puppeteer');
       delay: 0
     });
     await page.click('#btnLeit_CD');
-    await page.waitFor('#ASPxGridView1_DXDataRow0', { timeout: 5000 });
+
+    try {
+      await page.waitFor('#ASPxGridView1_DXDataRow0', { timeout: 2000 });
+    } catch (e) {
+      return {
+        success: false,
+        message: 'Kennitala not found'
+      };
+      page.close();
+    }
 
     const cells = await page.$$('#ASPxGridView1_DXDataRow0 td');
 
@@ -60,6 +69,7 @@ const puppeteer = require('puppeteer');
     console.log(`${localId}: done`);
 
     return {
+      success: true,
       kennitala: data[0],
       nafn: data[1],
       logheimili: data[2],
