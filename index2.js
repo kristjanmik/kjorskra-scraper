@@ -5,7 +5,6 @@ const puppeteer = require('puppeteer');
 
 (async () => {
   app.get('/leita/:kennitala', async (req, res, next) => {
-    console.log(`${new Date()} Doing lookup`);
     try {
       const { kennitala } = req.params;
 
@@ -22,12 +21,16 @@ const puppeteer = require('puppeteer');
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
 
+  let requestId = 1;
+
   const getData = async kennitala => {
-    console.log(`starting`);
+    const localId = ++requestId;
+
+    console.log(`${localId}: starting`);
 
     let page = await browser.newPage();
 
-    console.log(`goto page`);
+    console.log(`${localId}: goto page`);
     await page.goto('https://kjorskra.skra.is/kjorskra/', {
       waitUntil: 'networkidle'
     });
@@ -52,7 +55,7 @@ const puppeteer = require('puppeteer');
       })
     );
 
-    console.log(`done`);
+    console.log(`${localId}: done`);
 
     return {
       kennitala: data[0],
