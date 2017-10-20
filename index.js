@@ -18,8 +18,9 @@ app.listen(3400, () => {
   console.log('Listening on port 3400');
 });
 
-const browser = await puppeteer.launch({
-  headless: true
+const browser = puppeteer.launch({
+  headless: true,
+  args: ['--no-sandbox', '--disable-setuid-sandbox']
 });
 
 const getData = async kennitala => {
