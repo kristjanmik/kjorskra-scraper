@@ -12,6 +12,7 @@
     "bluebird": "~3.5.1",
     "cheerio": "~1.0.0-rc.2",
     "express": "~4.16.2",
+    "kennitala": "^1.1.0",
     "request": "~2.83.0"
   }
 }
