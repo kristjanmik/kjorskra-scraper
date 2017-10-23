@@ -13,7 +13,11 @@ module.exports = async function(kt) {
   kt = kt.slice(0,6)+'-'+kt.slice(6);
 
   
-  res = await requestAsync({url: 'https://kjorskra.skra.is/kjorskra/'});
+  res = await requestAsync({
+    url: 'https://kjorskra.skra.is/kjorskra/',
+    method: 'GET',
+    gzip: true
+  });
   $ = cheerio.load(res.body);
   $('form input').each( (i,v) => {
     form[$(v).attr('name')] = $(v).attr('value');
@@ -26,6 +30,7 @@ module.exports = async function(kt) {
   res = await requestAsync({
     url: 'https://kjorskra.skra.is/kjorskra/',
     method: 'POST',
+    gzip: true,
     form
   });
 
